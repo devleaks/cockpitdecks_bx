@@ -10,7 +10,8 @@ from cockpitdecks.deck import Deck
 from cockpitdecks.page import Page
 from cockpitdecks.event import PushEvent, EncoderEvent, SlideEvent
 from cockpitdecks.button import Button
-from cockpitdecks.buttons.representation import LED, EncoderLEDs
+from cockpitdecks.buttons.representation import LED
+from cockpitdecks_bx.buttons.representation import EncoderLEDs
 
 logger = logging.getLogger(__name__)
 # logger.setLevel(logging.DEBUG)
