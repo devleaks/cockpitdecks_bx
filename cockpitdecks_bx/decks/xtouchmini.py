@@ -126,8 +126,10 @@ class XTouchMini(Deck):
 
     # Low-level wrapper around device API (direct forward)
     #
-    def _set_key(self, key: int, on: bool = False, blink: bool = False):
+    def _set_key(self, key: int | str, on: bool = False, blink: bool = False):
         if self.device is not None:
+            if type(key) is str:
+                key = key.upper()
             self.device.set_key(key=key, on=on, blink=blink)
 
     def _set_control(self, key: int, value: int, mode: LED_MODE = LED_MODE.SINGLE):

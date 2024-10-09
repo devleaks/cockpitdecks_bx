@@ -83,7 +83,7 @@ buttons:
     action: cursor
     range:
       - -8192
-      - 8100
+      - 8064
     dimension:
       - 10
       - 254

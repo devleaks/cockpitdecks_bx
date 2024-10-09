@@ -49,8 +49,8 @@ class EncoderLEDs(Representation):
             logger.warning(f"{type(self).__name__}: invalid mode {mode}")
 
     def is_valid(self):
-        maxval = 7 if self.mode == LED_MODE.SPREAD else 13
-        value = self.get_button_value()
+        maxval = 7 if self.mode == LED_MODE.SPREAD else 11
+        value = self.get_rescaled_value(range_min=0, range_max=maxval, steps=maxval)
         if value is None:
             value = 0
         if value >= maxval:
@@ -58,16 +58,19 @@ class EncoderLEDs(Representation):
         return super().is_valid()
 
     def render(self):
-        maxval = 7 if self.mode == LED_MODE.SPREAD else 13
-        value = self.get_button_value()
+        maxval = 7 if self.mode == LED_MODE.SPREAD else 11
+        value = self.get_rescaled_value(range_min=0, range_max=maxval, steps=maxval)
+        logger.debug(f"rescaled {self.button.button_name()}: {self.get_button_value()} -> {value}")
         if value is None:
             value = 0
         v = min(int(value), maxval)
         return (v, self.mode)
 
     def clean(self):
+        old_value = self.button.value
         self.button.value = 0
         self.button.render()
+        self.button.value = old_value
 
     def describe(self) -> str:
         """
