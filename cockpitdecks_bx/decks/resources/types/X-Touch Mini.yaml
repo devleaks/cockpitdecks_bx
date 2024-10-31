@@ -30,3 +30,5 @@ buttons:
     range:
       - -8192
       - 8064
+  - name: mc
+    feedback: led
