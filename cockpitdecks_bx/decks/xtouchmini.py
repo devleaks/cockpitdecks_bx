@@ -166,9 +166,10 @@ class XTouchMini(Deck):
         self.device.start()
         logger.debug(f"deck {self.name}: started")
 
-    def terminate(self):
+    def terminate(self, disconnected: bool = False):
         super().terminate()  # cleanly unload current page, if any
-        XTouchMini.terminate_device(self.device, self.name)
+        if not disconnected:
+            XTouchMini.terminate_device(self.device, self.name)
         del self.device
         self.device = None
         logger.debug(f"{self.name} stopped")
