@@ -50,7 +50,7 @@ requires-python = ">=3.10,<3.13"
 dependencies = [
     "cockpitdecks @ git+https://github.com/devleaks/cockpitdecks.git",
     "xtouchmini @ git+https://github.com/devleaks/python-berhinger-xtouchmini.git",
-    "pillow~=11.0.0",
+    "pillow~=11.1.0",
 ]
 
 dynamic = [
