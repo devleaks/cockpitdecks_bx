@@ -4,22 +4,11 @@ All representations are listed at the end of this file.
 """
 
 import logging
-import colorsys
-
-from enum import Enum
-
-from PIL import ImageDraw, ImageFont
 
 from XTouchMini.Devices.xtouchmini import LED_MODE
 
-from cockpitdecks.resources.color import (
-    convert_color,
-    is_integer,
-    has_ext,
-    add_ext,
-    DEFAULT_COLOR,
-)
-from cockpitdecks import CONFIG_KW, DECK_FEEDBACK
+from cockpitdecks.resources.color import is_integer
+from cockpitdecks import DECK_FEEDBACK
 from cockpitdecks.buttons.representation import Representation
 
 logger = logging.getLogger(__name__)
@@ -60,7 +49,7 @@ class EncoderLEDs(Representation):
     def render(self):
         maxval = 7 if self.mode == LED_MODE.SPREAD else 11
         value = self.get_rescaled_value(range_min=0, range_max=maxval, steps=maxval)
-        logger.debug(f"rescaled {self.button.button_name()}: {self.get_button_value()} -> {value}")
+        logger.debug(f"rescaled {self.button_name()}: {self.get_button_value()} -> {value}")
         if value is None:
             value = 0
         v = min(int(value), maxval)
@@ -76,5 +65,5 @@ class EncoderLEDs(Representation):
         """
         Describe what the button does in plain English
         """
-        a = [f"The representation turns multiple LED ON or OFF around X-Touch Mini encoders"]
+        a = ["The representation turns multiple LED ON or OFF around X-Touch Mini encoders"]
         return "\n\r".join(a)
