@@ -43,13 +43,13 @@ class EncoderLEDs(Representation):
         if value is None:
             value = 0
         if value >= maxval:
-            logger.warning(f"button {self.button_name()}: {type(self).__name__}: value {value} too large for mode {self.mode}")
+            logger.warning(f"button {self.button_name}: {type(self).__name__}: value {value} too large for mode {self.mode}")
         return super().is_valid()
 
     def render(self):
         maxval = 7 if self.mode == LED_MODE.SPREAD else 11
         value = self.get_rescaled_value(range_min=0, range_max=maxval, steps=maxval)
-        logger.debug(f"rescaled {self.button_name()}: {self.get_button_value()} -> {value}")
+        logger.debug(f"rescaled {self.button_name}: {self.get_button_value()} -> {value}")
         if value is None:
             value = 0
         v = min(int(value), maxval)
