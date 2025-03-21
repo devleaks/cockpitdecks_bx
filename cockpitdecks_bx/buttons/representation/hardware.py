@@ -5,14 +5,11 @@ Special represenations for web decks, to draw a "hardware" button
 import logging
 import math
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
-from cockpitdecks import CONFIG_KW, DECK_KW, DECK_FEEDBACK, ICON_SIZE
-from cockpitdecks.resources.color import (
-    TRANSPARENT_PNG_COLOR,
-    convert_color,
-    light_off,
-)
+from cockpitdecks.resources.color import TRANSPARENT_PNG_COLOR
+
+from cockpitdecks.buttons.representation.draw import ICON_SIZE
 from cockpitdecks.buttons.representation.hardware import VirtualLED, VirtualEncoder, NO_ICON
 from XTouchMini.Devices.xtouchmini import LED_MODE
 
