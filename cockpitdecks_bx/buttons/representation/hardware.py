@@ -7,9 +7,6 @@ import math
 
 from PIL import Image, ImageDraw
 
-from cockpitdecks.resources.color import TRANSPARENT_PNG_COLOR
-
-from cockpitdecks.buttons.representation.draw import ICON_SIZE
 from cockpitdecks.buttons.representation.hardware import VirtualLED, VirtualEncoder, NO_ICON
 from XTouchMini.Devices.xtouchmini import LED_MODE
 
@@ -72,7 +69,7 @@ class VirtualXTMEncoderLED(VirtualEncoder):
         self.width = 2 * self.radius  # final dimension, 2 x radius of circle
         self.height = self.width  # force final image to be a square icon with. circle in it
 
-        self.ltot = int(ICON_SIZE / 2)  # button will be created in ICON_SIZE x ICON_SIZE
+        self.ltot = int(self.ICON_SIZE / 2)  # button will be created in self.ICON_SIZE x self.ICON_SIZE
         self.lext = 120
         self.lint = 84
         self.lstart = -130  # angles
@@ -126,10 +123,10 @@ class VirtualXTMEncoderLED(VirtualEncoder):
 
         tl = (self.ltot - self.lwidth / 2, self.ltot - self.lext)
         br = (self.ltot + self.lwidth / 2, self.ltot - self.lint)
-        image = Image.new(mode="RGBA", size=(ICON_SIZE, ICON_SIZE), color=TRANSPARENT_PNG_COLOR)
+        image = Image.new(mode="RGBA", size=(self.ICON_SIZE, self.ICON_SIZE), color=self.TRANSPARENT_PNG_COLOR)
 
         # Add surrounding leds
-        image_on = Image.new(mode="RGBA", size=(ICON_SIZE, ICON_SIZE), color=TRANSPARENT_PNG_COLOR)
+        image_on = Image.new(mode="RGBA", size=(self.ICON_SIZE, self.ICON_SIZE), color=self.TRANSPARENT_PNG_COLOR)
         one_mark_on = ImageDraw.Draw(image_on)
         one_mark_on.rounded_rectangle(tl + br, radius=self.rounded_corder, fill=self.color, outline=self.off_color, width=1)
 
@@ -137,7 +134,7 @@ class VirtualXTMEncoderLED(VirtualEncoder):
         # s = 2
         # tl = [x-s for x in tl]
         # br = [x+s for x in br]
-        image_off = Image.new(mode="RGBA", size=(ICON_SIZE, ICON_SIZE), color=TRANSPARENT_PNG_COLOR)
+        image_off = Image.new(mode="RGBA", size=(self.ICON_SIZE, self.ICON_SIZE), color=self.TRANSPARENT_PNG_COLOR)
         one_mark_off = ImageDraw.Draw(image_off)
         one_mark_off.rounded_rectangle(tl + br, radius=self.rounded_corder, fill=self.off_color, outline=self.off_color, width=1)
 
